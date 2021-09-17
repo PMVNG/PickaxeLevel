@@ -421,15 +421,6 @@ class Pickaxe extends PluginBase implements Listener{
 		return $item->getNamedTag()->hasTag("Pickaxe", StringTag::class);
 	}
 
-	//Reload Config
-	public function reload()
-    {
-        $this->pic->reload();
-        $this->reloadConfig();
-        $this->saveDefaultConfig();
-        $this->pic->save();
-    }
-
     //getExp player
 	public function getExp($player){
 		if($player instanceof Player){
