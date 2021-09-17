@@ -1,0 +1,18 @@
+GivePickaxe-MSG: true
+Msg-Give: "!givepickaxe"
+#Messages
+Console-CMD: Please use this command in game
+#MainForm
+Type: 1
+Title: §6§lPMVNG PICKAXE
+Content: "§1§l↣ §aChoose the button:"
+ButtonINFO: §b§l●§c Thông Tin §b●§e
+PNGINFO: "https://cdn-icons-png.flaticon.com/128/785/785822.png"
+ButtonTOP: §b§l●§c Xếp Hạng Cúp §b●§e
+PNGTOP: "https://cdn-icons-png.flaticon.com/128/4425/4425784.png"
+ButtonPOPUP: §b§l●§c Hiện Thông Tin Khi Đào §b●§e
+PNGPOPUP: "https://cdn-icons-png.flaticon.com/128/841/841539.png"
+#Info Form
+Contentinfo: Coming soon...
+ButtonBACK: §b§l●§c Thoát §b●§e
+PNGBACK: "https://cdn-icons-png.flaticon.com/128/3596/3596144.png"

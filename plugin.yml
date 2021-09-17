@@ -1,0 +1,14 @@
+name: PMVNGPickaxe
+version: 1.0
+api: 3.0.0
+main: YTBJero\pickaxe\Pickaxe
+author: YTBJero 
+
+commands:
+  pickaxe:
+    aliases: ["pmvng", "pp"]
+    description: "PMVNG pickaxe"
+  adminpickaxe:
+    description: "Admin Pickaxe"
+  toppickaxe:
+    description: "toppickaxe"
