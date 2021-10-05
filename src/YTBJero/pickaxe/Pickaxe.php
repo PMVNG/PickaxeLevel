@@ -16,12 +16,14 @@ use pocketmine\block\Block;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\event\Listener;
 use onebone\economyapi\EconomyAPI;
-use DaPigGuy\PiggyCustomEnchants\Main as CE;
+use DaPigGuy\PiggyCustomEnchants\PiggyCustomEnchants as CE;
 class Pickaxe extends PluginBase implements Listener{
 
 	const KEY_VALUE = "Level";
 
 	private static $instance;
+	
+	private $pic, $li, $CE, $score, $eco, $form;
 
 //Enable
 	public function onEnable(){
