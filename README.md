@@ -1,2 +1,2 @@
 # PMVNGPickaxe
-Plugin Pickaxe for pmmp_vn
+Plugin Pickaxe dành cho nền tảng PocketMine-mp
