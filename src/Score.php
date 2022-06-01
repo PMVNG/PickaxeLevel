@@ -1,14 +1,14 @@
 <?php
 
-namespace YTBJero\pickaxe;
+namespace DavidGlitch04\pickaxe;
 
 use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 use pocketmine\Server;
-use LousWiteMC\PhoBan\Main;
 use ScoreMC\ScoreMC;
 use pocketmine\level\Level;
 use pocketmine\Player;
+
 class Score extends Task{
 
 	public function onRun(int $tick) : void{

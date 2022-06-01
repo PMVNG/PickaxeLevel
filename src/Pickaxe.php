@@ -1,6 +1,6 @@
 <?php 
 
-namespace YTBJero\pickaxe;
+namespace DavidGlitch04\pickaxe;
 
 //Essentials Class
 use pocketmine\plugin\PluginBase;
