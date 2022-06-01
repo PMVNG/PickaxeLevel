@@ -1,6 +1,6 @@
 <?php
 
-namespace DavidGlitch04\pickaxe;
+namespace DavidGlitch04\PMVNGPickaxe;
 
 use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;

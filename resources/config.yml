@@ -1,5 +1,5 @@
-GivePickaxe-MSG: true
-Msg-Give: "!givepickaxe"
+givePickaxe_chat: true
+msg-Give: "!givepickaxe"
 #Messages
 Console-CMD: Please use this command in game
 #MainForm
