@@ -1,127 +1,127 @@
-<?php 
+<?php
+
+declare(strict_types=1);
+
 
 namespace DavidGlitch04\PMVNGPickaxe;
 
 //Essentials Class
-use pocketmine\plugin\PluginBase;
-use pocketmine\command\{CommandSender, Command, ConsoleCommandSender};
-use pocketmine\player\Player;
-use pocketmine\utils\Config;
-use pocketmine\item\Item;
-use pocketmine\nbt\tag\StringTag;
-use pocketmine\event\Listener;
 use DaPigGuy\PiggyCustomEnchants\PiggyCustomEnchants as CE;
 use DavidGlitch04\PMVNGPickaxe\listener\EventListener;
 use DavidGlitch04\PMVNGPickaxe\utils\SingletonTrait;
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+use pocketmine\command\ConsoleCommandSender;
+use pocketmine\event\Listener;
+use pocketmine\item\Item;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\player\Player;
+use pocketmine\plugin\PluginBase;
+use pocketmine\utils\Config;
+use function array_shift;
+use function arsort;
+use function ceil;
+use function count;
+use function is_numeric;
+use function max;
+use function min;
 
-class Pickaxe extends PluginBase implements Listener{
-
+class Pickaxe extends PluginBase implements Listener {
 	const KEY_VALUE = "Level";
 
 	use SingletonTrait;
-	
+
 	private $pic, $li, $CE, $score, $eco, $form;
 
-	protected function onEnable(): void{
+	protected function onEnable() : void {
 		self::setInstance($this);
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 		$this->saveDefaultConfig();
-		$this->pic = new Config($this->getDataFolder()."pickaxe.yml", Config::YAML);
+		$this->pic = new Config($this->getDataFolder() . "pickaxe.yml", Config::YAML);
 		$this->li = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
-		$this->CE =  $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
-		$this->score =  $this->getServer()->getPluginManager()->getPlugin("ScoreMC");
-		$this->eco =  $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-		$this->form =  $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
+		$this->score = $this->getServer()->getPluginManager()->getPlugin("ScoreMC");
+		$this->eco = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+		$this->form = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
 
 		$task = new Score($this);
 		$this->getScheduler()->scheduleRepeatingTask($task, 20);
 
 		//Check Plugin
-		if($this->li == null){ //LockedItem 
+		if ($this->li == null) { //LockedItem
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed LockedItem, please download it at https://poggit.pmmp.io/p/LockedItem/3.0.0 and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
-		if($this->CE == null){ //PiggyCustomEnchant
+		if ($this->CE == null) { //PiggyCustomEnchant
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed PiggyCustomEnchants, please download it and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
-		if($this->score == null){ //ScoreMC
+		if ($this->score == null) { //ScoreMC
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed ScoreMC, please download it and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
-		if($this->eco == null){ //EconomyAPI
+		if ($this->eco == null) { //EconomyAPI
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed EconomyAPI, please download it and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
-		if($this->form == null){ //FormAPI
+		if ($this->form == null) { //FormAPI
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed FormAPI, please download it and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
 	}
-
-    //Event Join
-	
-
-	//Item Event
-	
-
-	//BreakBlock Popup
-	
-
-//Commands
-	public function onCommand(CommandSender $s, Command $cmd, String $label, Array $args): bool 
-	{
+	public function onCommand(CommandSender $s, Command $cmd, String $label, Array $args) : bool {
 		///command /pickaxe
-		if($cmd->getName() == "pickaxe"){
-			if($s instanceof Player){
+		if ($cmd->getName() == "pickaxe") {
+			if ($s instanceof Player) {
 				$this->MainForm($s);
-			} else{
+			} else {
 				$this->getLogger()->error($this->getConfig()->get("Console-CMD"));
 			}
 		}
 		//Admin
-		if($cmd->getName() == "adminpickaxe"){
-			if(!$s->isOp()){
+		if ($cmd->getName() == "adminpickaxe") {
+			if (!$s->isOp()) {
 				$s->sendMessage("§cYou can't use this command!");
-			} else{
+			} else {
 				$this->AdminForm($s);
 			}
 		}
-		if($cmd->getName() == "toppickaxe"){
+		if ($cmd->getName() == "toppickaxe") {
 			$levelplot = $this->pic->getAll();
 			$max = 0;
 			$max = count($levelplot);
 			$max = ceil(($max / 5));
-			
+
 			$message = "";
 			$message1 = "";
-			
+
 			$page = array_shift($args);
 			$page = max(1, $page);
 			$page = min($max, $page);
-			$page = (int)$page;
-			
+			$page = (int) $page;
+
 			$aa = $this->pic->getAll();
 			arsort($aa);
 			$i = 0;
-			
-			foreach ($aa as $b=>$a) {
+
+			foreach ($aa as $b => $a) {
 				if (($page - 1) * 5 <= $i && $i <= ($page - 1) * 5 + 4) {
 					$i1 = $i + 1;
 					$c = $this->pic->get($b)["Level"];
-					$trang = "§l§c⚒§6 Xếp Hạng Cấp Cúp §a ".$page."§f/§a".$max."§c ⚒\n";
-					$message .= "§l§bHạng §e".$i1."§b thuộc về §c".$b."§f Với §e".$c." §cCấp\n";
-					$message1 .= "§l§bHạng §e".$i1."§b thuộc về §c".$b."§f Với §e".$c." §cCấp\n";
-				} $i++;
+					$trang = "§l§c⚒§6 Xếp Hạng Cấp Cúp §a " . $page . "§f/§a" . $max . "§c ⚒\n";
+					$message .= "§l§bHạng §e" . $i1 . "§b thuộc về §c" . $b . "§f Với §e" . $c . " §cCấp\n";
+					$message1 .= "§l§bHạng §e" . $i1 . "§b thuộc về §c" . $b . "§f Với §e" . $c . " §cCấp\n";
+				}
+				$i++;
 			}
 			$form = $this->form->createCustomForm(function (Player $s, $data) use ($trang, $message) {
-				if ($data === null) { 
-					return $this->MainForm($s); 
+				if ($data === null) {
+					return $this->MainForm($s);
 				}
-				$this->getServer()->dispatchCommand($s, "toppickaxe ".$data[1]);
+				$this->getServer()->dispatchCommand($s, "toppickaxe " . $data[1]);
 			});
 			$form->setTitle("§6§lTOP PICKAXE");
-			$form->addLabel($trang. $message);
+			$form->addLabel($trang . $message);
 			$form->addInput("§1§l↣ §aNext Page", "0");
 			$form->sendToPlayer($s);
 		}
@@ -130,10 +130,10 @@ class Pickaxe extends PluginBase implements Listener{
 
 
 	//MainForm
-	public function MainForm(Player $player){
-		$form = $this->form->createSimpleForm(function (Player $player, ?int $data = null){
+	public function MainForm(Player $player) {
+		$form = $this->form->createSimpleForm(function (Player $player, ?int $data = null) {
 			$result = $data;
-			if($data === null){
+			if ($data === null) {
 				return false;
 			}
 			switch ($result) {
@@ -162,10 +162,10 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//Info Form
-	public function info(Player $player){
-		$form = $this->form->createSimpleForm(function (Player $player, ?int $data = null){
+	public function info(Player $player) {
+		$form = $this->form->createSimpleForm(function (Player $player, ?int $data = null) {
 			$result = $data;
-			if($data === null){
+			if ($data === null) {
 				return false;
 			}
 		});
@@ -178,16 +178,16 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 	//Admin Form
 
-	public function AdminForm(Player $player){
-		$form = $this->form->createCustomForm(function (Player $player, $data){
-			if($data == null){
+	public function AdminForm(Player $player) {
+		$form = $this->form->createCustomForm(function (Player $player, $data) {
+			if ($data == null) {
 				return false;
 			}
-			if($data[0] == null || $data[1] == null || $data[2] == null){
+			if ($data[0] == null || $data[1] == null || $data[2] == null) {
 				$player->sendMessage("§cVui lòng nhập đầy đủ thông tin!");
 				return false;
 			}
-			if(!is_numeric($data[0]) || !is_numeric($data[1]) || !is_numeric($data[2])){
+			if (!is_numeric($data[0]) || !is_numeric($data[1]) || !is_numeric($data[2])) {
 				$player->sendMessage("§cThông tin phải là số!");
 				return false;
 			}
@@ -206,35 +206,35 @@ class Pickaxe extends PluginBase implements Listener{
 		$form->sendToPlayer($player);
 		return $form;
 	}
-//Popup Form
-	public function popup(Player $player){
-		$form = $this->form->createCustomForm(function (Player $player, $data){
-			if($data === null){
+	//Popup Form
+	public function popup(Player $player) {
+		$form = $this->form->createCustomForm(function (Player $player, $data) {
+			if ($data === null) {
 				return $this->MainForm($player);
 			}
-			if($data[0] == true){
+			if ($data[0] == true) {
 				$current = $this->pic->get($player->getName())["Exp"];
-			$currentlv = $this->pic->get($player->getName())["Level"];
-			$currentne = $this->pic->get($player->getName())["NextExp"];
-			$this->pic->set(($player->getName()), [
-				"Exp" => $current,
-				"Level" => $currentlv,
-				"NextExp" => $currentne,
-				"Popup" => true
-			]);
-			$this->pic->save();
+				$currentlv = $this->pic->get($player->getName())["Level"];
+				$currentne = $this->pic->get($player->getName())["NextExp"];
+				$this->pic->set(($player->getName()), [
+					"Exp" => $current,
+					"Level" => $currentlv,
+					"NextExp" => $currentne,
+					"Popup" => true
+				]);
+				$this->pic->save();
 			}
-			if($data[0] == false){
+			if ($data[0] == false) {
 				$current = $this->pic->get($player->getName())["Exp"];
-			$currentlv = $this->pic->get($player->getName())["Level"];
-			$currentne = $this->pic->get($player->getName())["NextExp"];
-			$this->pic->set(($player->getName()), [
-				"Exp" => $current,
-				"Level" => $currentlv,
-				"NextExp" => $currentne,
-				"Popup" => false
-			]);
-			$this->pic->save();
+				$currentlv = $this->pic->get($player->getName())["Level"];
+				$currentne = $this->pic->get($player->getName())["NextExp"];
+				$this->pic->set(($player->getName()), [
+					"Exp" => $current,
+					"Level" => $currentlv,
+					"NextExp" => $currentne,
+					"Popup" => false
+				]);
+				$this->pic->save();
 			}
 		});
 		$form->setTitle("§6§lPoppup Pickaxe");
@@ -244,20 +244,20 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//Name Pickaxe Level
-	public function getPickaxeName($player){
-		if($player instanceof Player){
-				$player = $player->getName();
-				}
-				$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b ".$this->pic->get($player)["Level"]." §r§l]§a§l ".$player;
-			return $name;	
+	public function getPickaxeName($player) {
+		if ($player instanceof Player) {
+			$player = $player->getName();
+		}
+		$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b " . $this->pic->get($player)["Level"] . " §r§l]§a§l " . $player;
+		return $name;
 	}
 
 	//Lore Pickaxe Level
-	public function getPickaxeLore($player){
-		if($player instanceof Player){
-				$player = $player->getName();
-				}
-		$lore = "§b§l⇲ Thông Tin:\n§e§lChiếc Cúp Được Rèn Từ\n§e§l§cMột Vị Thần tài Giỏi Đã Chiến Thắng §eCuộc Thời Chiến Tranh\n§e§l✦ §6Cậu Đã Triệu Hồi Ta?, Thế Cậu Đã sẵn Sàng Đối Đầu Chưa?\n\n§9§l↦ §bChủ Nhân: §a".$player."!";
+	public function getPickaxeLore($player) {
+		if ($player instanceof Player) {
+			$player = $player->getName();
+		}
+		$lore = "§b§l⇲ Thông Tin:\n§e§lChiếc Cúp Được Rèn Từ\n§e§l§cMột Vị Thần tài Giỏi Đã Chiến Thắng §eCuộc Thời Chiến Tranh\n§e§l✦ §6Cậu Đã Triệu Hồi Ta?, Thế Cậu Đã sẵn Sàng Đối Đầu Chưa?\n\n§9§l↦ §bChủ Nhân: §a" . $player . "!";
 		return $lore;
 	}
 
@@ -268,18 +268,18 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//Check Pickaxe Level
-	public function onCheck(Item $item) : bool{
+	public function onCheck(Item $item) : bool {
 		return $item->getNamedTag()->hasTag("Pickaxe", StringTag::class);
 	}
 
-    //getExp player
-	public function getExp($player){
-		if($player instanceof Player){
+	//getExp player
+	public function getExp($player) {
+		if ($player instanceof Player) {
 			$player = $player->getName();
-			if(!$this->pic->exists($player)){
+			if (!$this->pic->exists($player)) {
 				$exp = 0;
 				return $exp;
-			} else{
+			} else {
 				$exp = $this->pic->get($player)["Exp"];
 				return $exp;
 			}
@@ -287,13 +287,13 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//getNextExp player
-	public function getNextExp($player){
-		if($player instanceof Player){
+	public function getNextExp($player) {
+		if ($player instanceof Player) {
 			$player = $player->getName();
-			if(!$this->pic->exists($player)){
+			if (!$this->pic->exists($player)) {
 				$nexp = 0;
 				return $nexp;
-			} else{
+			} else {
 				$nexp = $this->pic->get($player)["NextExp"];
 				return $nexp;
 			}
@@ -301,22 +301,22 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//get Level player
-	public function getLevel($player){
-		if($player instanceof Player){
+	public function getLevel($player) {
+		if ($player instanceof Player) {
 			$player = $player->getName();
-			if(!$this->pic->exists($player)){
+			if (!$this->pic->exists($player)) {
 				$lv = 0;
 				return $lv;
-			} else{
+			} else {
 				$lv = $this->pic->get($player)["Level"];
 				return $lv;
-			}		
+			}
 		}
 	}
 
 	//addExp for player
-	public function addExp($player, $xp){
-		if($player instanceof Player){
+	public function addExp($player, $xp) {
+		if ($player instanceof Player) {
 			$player = $player->getName();
 			$current = $this->pic->get($player)["Exp"];
 			$currentlv = $this->pic->get($player)["Level"];
@@ -333,36 +333,35 @@ class Pickaxe extends PluginBase implements Listener{
 	}
 
 	//set level next
-	public function setLevel($player, $level){
-		if($player instanceof Player){
+	public function setLevel($player, $level) {
+		if ($player instanceof Player) {
 			$name = $player->getName();
-         $nextexp = ($this->getLevel($player)+1)*120;
-         $currentpopup = $this->pic->get($player->getName())["Popup"];
-          $this->pic->set(($name), ["Exp" => 0, "Level" => $level, "NextExp" => $nextexp, "Popup" => $currentpopup]);
-          $this->pic->save();
-      }
-  }
+			$nextexp = ($this->getLevel($player) + 1) * 120;
+			$currentpopup = $this->pic->get($player->getName())["Popup"];
+			$this->pic->set(($name), ["Exp" => 0, "Level" => $level, "NextExp" => $nextexp, "Popup" => $currentpopup]);
+			$this->pic->save();
+		}
+	}
 
-  //add piggycustomenchants
-	public function addCE(CommandSender $sender, $enchantment, $level, $target)
-    {
-        $plugin = $this->CE;
-        if ($plugin instanceof CE) {
-            if (!is_numeric($level)) {
-                $level = 1;
-                $sender->sendMessage("Level must be numerical. Setting level to 1.");
-            }
-            $target == null ? $target = $sender : $target = $this->getServer()->getPlayer($target);
-            if (!$target instanceof Player) {
-                if ($target instanceof ConsoleCommandSender) {
-                    $sender->sendMessage("Please provide a player.");
-                    return;
-                }
-                $sender->sendMessage("Invalid player.");
-                return;
-            }
-            $target->getInventory()->setItemInHand($plugin->addEnchantment($target->getInventory()->getItemInHand(), $enchantment, $level, $sender->hasPermission("piggycustomenchants.overridecheck") ? false : true, $sender));
-        }
-    }
+	//add piggycustomenchants
+	public function addCE(CommandSender $sender, $enchantment, $level, $target) {
+		$plugin = $this->CE;
+		if ($plugin instanceof CE) {
+			if (!is_numeric($level)) {
+				$level = 1;
+				$sender->sendMessage("Level must be numerical. Setting level to 1.");
+			}
+			$target == null ? $target = $sender : $target = $this->getServer()->getPlayer($target);
+			if (!$target instanceof Player) {
+				if ($target instanceof ConsoleCommandSender) {
+					$sender->sendMessage("Please provide a player.");
+					return;
+				}
+				$sender->sendMessage("Invalid player.");
+				return;
+			}
+			$target->getInventory()->setItemInHand($plugin->addEnchantment($target->getInventory()->getItemInHand(), $enchantment, $level, $sender->hasPermission("piggycustomenchants.overridecheck") ? false : true, $sender));
+		}
+	}
 }
 ##------------------------------------[END]--------------------------------------------------

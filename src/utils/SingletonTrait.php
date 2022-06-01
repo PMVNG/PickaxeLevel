@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DavidGlitch04\PMVNGPickaxe\utils;
 
 use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 
-trait SingletonTrait{
+trait SingletonTrait {
+	public static $instance;
 
-    public static $instance;
-
-    public static function setInstance(Pickaxe $instance) : void {
+	public static function setInstance(Pickaxe $instance) : void {
 		self::$instance = $instance;
 	}
 
