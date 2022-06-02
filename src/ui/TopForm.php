@@ -23,11 +23,22 @@ class TopForm{
                 return;
             }
 		});
-		$form->setTitle("§6§lTOP PICKAXE");
+		$form->setTitle($this->pickaxe->getConfig()->getNested("TopForm.title"));
 		arsort($all);
 		$i = 1;
 		foreach($all as $name => $level){
-			$form->addLabel("§l§bHạng §e".$i."§b thuộc về §c".$name."§f Với §e".$level." §cCấp\n");
+            $search = [
+                "{top}",
+                "{username}",
+                "{level}"
+            ];
+            $replace = [
+                $i,
+                $name,
+                $level
+            ];
+            $label = str_replace($search, $replace, $this->pickaxe->getConfig()->getNested("TopForm.label"));
+			$form->addLabel($label."\n");
 			if($i >= 10) break;
 			++$i;
 		}

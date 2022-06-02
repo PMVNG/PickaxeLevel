@@ -35,11 +35,11 @@ class MainForm{
 			}
 		});
         $type = $this->pickaxe->getConfig()->get("Type");
-		$form->setTitle($this->pickaxe->getConfig()->get("Title"));
-		$form->setContent($this->pickaxe->getConfig()->get("Content"));
-		$form->addButton($this->pickaxe->getConfig()->get("ButtonINFO"), $type, $this->pickaxe->getConfig()->get("PNGINFO"));
-		$form->addButton($this->pickaxe->getConfig()->get("ButtonTOP"), $type, $this->pickaxe->getConfig()->get("PNGTOP"));
-		$form->addButton($this->pickaxe->getConfig()->get("ButtonPOPUP"), $type, $this->pickaxe->getConfig()->get("PNGPOPUP"));
+		$form->setTitle($this->pickaxe->getConfig()->getNested("MainForm.title"));
+		$form->setContent($this->pickaxe->getConfig()->getNested("MainForm.content"));
+		$form->addButton($this->pickaxe->getConfig()->getNested("MainForm.button_info"), $type, $this->pickaxe->getConfig()->getNested("MainForm.png_info"));
+		$form->addButton($this->pickaxe->getConfig()->getNested("MainForm.button_top"), $type, $this->pickaxe->getConfig()->getNested("MainForm.png_top"));
+		$form->addButton($this->pickaxe->getConfig()->getNested("MainForm.button_popup"), $type, $this->pickaxe->getConfig()->getNested("MainForm.png_popup"));
 		$player->sendForm($form);
         return;
     }

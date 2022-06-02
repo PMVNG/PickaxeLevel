@@ -45,6 +45,8 @@ class PickaxeCommand extends Command implements PluginOwned{
                     }
                     break;
             }
+        } else{
+            $sender->sendMessage($this->plugin->getConfig()->get("Console-CMD"));
         }
     }
 }

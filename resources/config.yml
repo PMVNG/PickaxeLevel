@@ -4,15 +4,23 @@ msg-Give: "!givepickaxe"
 Console-CMD: Please use this command in game
 #MainForm
 Type: 1
-Title: §6§lPMVNG PICKAXE
-Content: "§1§l↣ §aChoose the button:"
-ButtonINFO: §b§l●§c Thông Tin §b●§e
-PNGINFO: "https://cdn-icons-png.flaticon.com/128/785/785822.png"
-ButtonTOP: §b§l●§c Xếp Hạng Cúp §b●§e
-PNGTOP: "https://cdn-icons-png.flaticon.com/128/4425/4425784.png"
-ButtonPOPUP: §b§l●§c Hiện Thông Tin Khi Đào §b●§e
-PNGPOPUP: "https://cdn-icons-png.flaticon.com/128/841/841539.png"
-#Info Form
-Contentinfo: Coming soon...
-ButtonBACK: §b§l●§c Thoát §b●§e
-PNGBACK: "https://cdn-icons-png.flaticon.com/128/3596/3596144.png"
+
+MainForm:
+  title: §6§lPMVNG PICKAXE
+  content: "§1§l↣ §aChoose the button:"
+  button_info: §b§l●§c Thông Tin §b●§e
+  png_info: "https://cdn-icons-png.flaticon.com/128/785/785822.png"
+  button_top: §b§l●§c Xếp Hạng Cúp §b●§e
+  png_top: "https://cdn-icons-png.flaticon.com/128/4425/4425784.png"
+  button_popup: §b§l●§c Hiện Thông Tin Khi Đào §b●§e
+  png_popup: "https://cdn-icons-png.flaticon.com/128/841/841539.png"
+
+InfoForm:
+  title: §6§lPMVNG PICKAXE
+  content: Coming soon...
+  button_back: §b§l●§c Thoát §b●§e
+  png_back: "https://cdn-icons-png.flaticon.com/128/3596/3596144.png"
+
+TopForm:
+  title: §6§lPMVNG PICKAXE
+  label: §l§bHạng §e{top} §b thuộc về §c{username }§f Với §e{level} §cCấp

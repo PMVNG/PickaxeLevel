@@ -23,9 +23,9 @@ class InfoForm{
 			}
 		});
 		$type = $this->pickaxe->getConfig()->get("Type");
-		$form->setTitle($this->pickaxe->getConfig()->get("Title"));
-		$form->setContent($this->pickaxe->getConfig()->get("Contentinfo"));
-		$form->addButton($this->pickaxe->getConfig()->get("ButtonBACK"), $type, $this->pickaxe->getConfig()->get("PNGBACK"));
+		$form->setTitle($this->pickaxe->getConfig()->getNested("InfoForm.title"));
+		$form->setContent($this->pickaxe->getConfig()->getNested("InfoForm.content"));
+		$form->addButton($this->pickaxe->getConfig()->getNested("InfoForm.button_back"), $type, $this->pickaxe->getConfig()->getNested("InfoForm.png_back"));
 		$player->sendForm($form);
         return;
     }
