@@ -5,7 +5,6 @@ namespace DavidGlitch04\PMVNGPickaxe\ui;
 use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 use pocketmine\player\Player;
 use Vecnavium\FormsUI\CustomForm;
-use Vecnavium\FormsUI\SimpleForm;
 
 class PopupForm{
 

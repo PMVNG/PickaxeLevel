@@ -5,7 +5,6 @@ namespace DavidGlitch04\PMVNGPickaxe\ui;
 use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 use pocketmine\player\Player;
 use TungstenVn\Clothes\libs\jojoe77777\FormAPI\CustomForm;
-use Vecnavium\FormsUI\SimpleForm;
 
 class AdminForm{
 
@@ -24,19 +23,13 @@ class AdminForm{
 			}
 			if (!isset($data[0]) || !isset($data[1]) || !isset($data[2])) {
 				$player->sendMessage("§cVui lòng nhập đầy đủ thông tin!");
-				return false;
+				return;
 			}
 			if (!is_numeric($data[0]) || !is_numeric($data[1]) || !is_numeric($data[2])) {
 				$player->sendMessage("§cThông tin phải là số!");
-				return false;
+				return;
 			}
-			$this->pickaxe->pic->set(($player->getName()), [
-				"Exp" => $data[1],
-				"Level" => $data[0],
-				"NextExp" => $data[2],
-				"Popup" => true
-			]);
-			$this->pickaxe->pic->save();
+			// TODO: Set Data
 		});
 		$form->setTitle("§c§lAdmin Pickaxe");
 		$form->addInput("§1§l↣ §aLevel:", "0");

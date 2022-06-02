@@ -27,7 +27,7 @@ class MainForm{
 					new InfoForm($player);
 					break;
 				case 1:
-				    $this->getServer()->dispatchCommand($player, "toppickaxe");
+                    new TopForm($player);
 				    break;
 				case 2:
 				    new PopupForm($player);

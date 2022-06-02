@@ -61,4 +61,8 @@ class YamlProvider{
         $this->users->set($username, $data);
         $this->users->save();
     }
+
+    public function getAllUsers(): array{
+        return $this->users->getAll();
+    }
 }

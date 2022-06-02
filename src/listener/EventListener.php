@@ -44,21 +44,14 @@ class EventListener implements Listener {
 	}
 
 	public function onChat(PlayerChatEvent $event) {
-		$p = $event->getPlayer();
+		$player = $event->getPlayer();
 		$msg = $event->getMessage();
 		$config = $this->plugin->getConfig();
-		$nameitem = $this->plugin->getPickaxeName($p);
-		$loreitem = $this->plugin->getPickaxeLore($p);
 		if ($config->get("givePickaxe_chat", true)) {
 			if ($config->get('msg-Give', '!givepickaxe') == $msg) {
 				$event->cancel();
-				$p->sendMessage("§a§lNhận Cúp Thành Công!");
-				$item = VanillaItems::IRON_PICKAXE();
-				$item->setCustomName($nameitem);
-				$item->setLore([$loreitem]);
-				$this->plugin->setPickaxe($item);
-				$this->li->setLocked($item);
-				$p->getInventory()->addItem($item);
+				$this->plugin->getPickaxeMgr()->addPickaxe($player);
+				$player->sendMessage("§a§lNhận Cúp Thành Công!");
 			}
 		}
 	}
