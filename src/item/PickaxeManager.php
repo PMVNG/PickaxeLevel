@@ -16,7 +16,6 @@ class PickaxeManager{
         $this->pickaxe = Pickaxe::getInstance();
     }
 
-    
 	public function getPickaxeName(Player $player) {
 		$username = $player->getName();
 		$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b " . $this->pickaxe->getProvider()->getData($player)["Level"] . " §r§l]§a§l " . $username;

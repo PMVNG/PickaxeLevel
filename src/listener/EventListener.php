@@ -13,7 +13,7 @@ use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\item\enchantment\EnchantmentInstance;
-use pocketmine\item\VanillaItems;
+use pocketmine\item\ItemIds;
 use pocketmine\Server;
 use function in_array;
 
@@ -21,16 +21,16 @@ class EventListener implements Listener {
 	protected Pickaxe $plugin;
 
 	private array $list = [
-		56 => 4,
-		14 => 3,
-		15 => 4,
-		16 => 2,
-		41 => 6,
-		42 => 6,
-		57 => 7,
-		129 => 6,
-		133 => 8
-	]; // TODO: Use ItemIds on array_keys
+		ItemIds::DIAMOND_ORE => 4,
+		ItemIds::IRON_ORE => 3,
+		ItemIds::GOLD_ORE => 4,
+		ItemIds::COAL_ORE => 2,
+		ItemIds::GOLD_BLOCK => 6,
+		ItemIds::IRON_BLOCK => 6,
+		ItemIds::DIAMOND_BLOCK => 7,
+		ItemIds::EMERALD_ORE => 6,
+		ItemIds::EMERALD_BLOCK => 8
+	];
 
 	public function __construct(Pickaxe $plugin) {
 		$this->plugin = $plugin;
