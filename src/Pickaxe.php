@@ -18,7 +18,7 @@ class Pickaxe extends PluginBase implements Listener {
 
 	use SingletonTrait;
 
-	protected PluginBase $li, $CE;
+	public $li, $CE;
 
 	protected Config $pic;
 
@@ -27,8 +27,8 @@ class Pickaxe extends PluginBase implements Listener {
 	protected function onEnable() : void {
 		self::setInstance($this);
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-		$task = new Score($this);
-		$this->getScheduler()->scheduleRepeatingTask($task, 20);
+		/// $task = new Score($this);
+		 /// $this->getScheduler()->scheduleRepeatingTask($task, 20);
 		$this->initDepend();
 		$this->provider = new YamlProvider();
 		$this->provider->initConfig();
@@ -47,11 +47,7 @@ class Pickaxe extends PluginBase implements Listener {
 		$this->lockeditem = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
 		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 		if ($this->lockeditem == null) {
-			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed LockedItem, please download it at https://poggit.pmmp.io/p/LockedItem/3.0.0 and then try again.");
-			$this->getServer()->getPluginManager()->disablePlugin($this);
-		}
-		if ($this->CE == null) {
-			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed PiggyCustomEnchants, please download it and then try again.");
+			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed LockedItem, please download it at https://poggit.pmmp.io/p/LockedItem/5.0.0 and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
 	}

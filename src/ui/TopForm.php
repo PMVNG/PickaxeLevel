@@ -32,6 +32,7 @@ class TopForm{
                 "{username}",
                 "{level}"
             ];
+            $level = $all[$name]["Level"];
             $replace = [
                 $i,
                 $name,

@@ -43,7 +43,7 @@ class YamlProvider{
     public function getData(Player $player): array|null {
         $username = $player->getName();
 		$data = $this->users->getAll();
-        return !isset($data[$username]) ? $data[$username] : null;
+        return isset($data[$username]) ? $data[$username] : null;
 	}
 
     public function addExp(Player $player, int $exp): void{
@@ -58,6 +58,16 @@ class YamlProvider{
         $username = $player->getName();
 		$data = $this->users->get($username, []);
         $data["Popup"] = $status;
+        $this->users->set($username, $data);
+        $this->users->save();
+    }
+
+    public function LevelUP(Player $player): void{
+        $username = $player->getName();
+		$data = $this->users->get($username, []);
+        $data["Level"] = $this->getData($player)["Level"] + 1;
+        $data["Exp"] = 0;
+        $data["NextExp"] = $this->getData($player)["NextExp"]*120;
         $this->users->set($username, $data);
         $this->users->save();
     }

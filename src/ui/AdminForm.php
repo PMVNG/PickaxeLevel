@@ -4,7 +4,7 @@ namespace DavidGlitch04\PMVNGPickaxe\ui;
 
 use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 use pocketmine\player\Player;
-use TungstenVn\Clothes\libs\jojoe77777\FormAPI\CustomForm;
+use Vecnavium\FormsUI\CustomForm;
 
 class AdminForm{
 
