@@ -36,11 +36,10 @@ class EventListener implements Listener {
 		$this->plugin = $plugin;
 	}
 
-	public function onJoin(PlayerJoinEvent $ev) {
-		$user = $ev->getPlayer()->getName();
-		if (!$this->pic->exists($user)) {
-			$this->pic->set(($user), ["Exp" => 0, "Level" => 1, "NextExp" => 200, "Popup" => false]);
-			$this->pic->save();
+	public function onJoin(PlayerJoinEvent $event) {
+		$player = $event->getPlayer();
+		if(!$this->plugin->getProvider()->isRegistered($player)){
+			$this->plugin->getProvider()->registerUser($player);
 		}
 	}
 
@@ -102,19 +101,19 @@ class EventListener implements Listener {
 		$player = $event->getPlayer();
 		$item = $player->getInventory()->getItemInHand();
 		$id = $event->getBlock()->getId();
-		$n = $this->plugin->pic->get($player->getName());
+		$data = $this->plugin->getProvider()->getData($player);
 		if ($event->isCancelled()) {
 			return;
 		}
 		if ($this->plugin->onCheck($item)) {
 			if (in_array($id, $this->list, true)) {
-				$this->plugin->addExp($player, $this->list[$id]);
+				$this->plugin->getProvider()->addExp($player, $this->list[$id]);
 			}
-			if ($this->plugin->pic->get($player->getName())["Popup"]) {
-				$player->sendPopup("§e§l⎳ §dCÚP: §b§l❖ §bPMVNG §e✪§9PICKAXE§e✪ §e⚒\n§c§l ⊱ §bKinh Nghiệm:§a " . $n["Exp"] . "§3/§a" . $n["NextExp"] . " §c| §bCấp Cúp: §a" . $n["Level"]);
+			if ($data["Popup"]) {
+				$player->sendPopup("§e§l⎳ §dCÚP: §b§l❖ §bPMVNG §e✪§9PICKAXE§e✪ §e⚒\n§c§l ⊱ §bKinh Nghiệm:§a " . $data["Exp"] . "§3/§a" . $data["NextExp"] . " §c| §bCấp Cúp: §a" . $data["Level"]);
 			}
-			if ($this->plugin->getExp($player) >= $this->plugin->getNextExp($player)) {
-				$this->plugin->setLevel($player, $this->plugin->getLevel($player) + 1);
+			if ($data["Exp"] >= $data["NextExp"]) {
+				$this->plugin->setLevel($player, $data["Level"] + 1);
 				$player->sendMessage("§e§l❖§6Level Cúp§e: " . $this->plugin->getLevel($player) . "!");
 				$player->sendTitle("§a❖§l§9 Lên cấp§e " . $this->plugin->getLevel($player));
 				// TODO: Rewards

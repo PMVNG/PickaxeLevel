@@ -7,6 +7,7 @@ namespace DavidGlitch04\PMVNGPickaxe;
 
 use DaPigGuy\PiggyCustomEnchants\PiggyCustomEnchants;
 use DavidGlitch04\PMVNGPickaxe\listener\EventListener;
+use DavidGlitch04\PMVNGPickaxe\provider\YamlProvider;
 use DavidGlitch04\PMVNGPickaxe\utils\SingletonTrait;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -34,14 +35,20 @@ class Pickaxe extends PluginBase implements Listener {
 
 	protected Config $pic;
 
+	protected YamlProvider $provider;
+
 	protected function onEnable() : void {
 		self::setInstance($this);
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-		$this->saveDefaultConfig();
-		$this->pic = new Config($this->getDataFolder() . "pickaxe.yml", Config::YAML);
 		$task = new Score($this);
 		$this->getScheduler()->scheduleRepeatingTask($task, 20);
 		$this->initDepend();
+		$this->provider = new YamlProvider();
+		$this->provider->initConfig();
+	}
+
+	public function getProvider(): YamlProvider{
+		return $this->provider;
 	}
 
 	protected function initDepend(): void{
@@ -121,8 +128,6 @@ class Pickaxe extends PluginBase implements Listener {
 		$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b " . $this->pic->get($player)["Level"] . " §r§l]§a§l " . $player;
 		return $name;
 	}
-
-	//Lore Pickaxe Level
 	public function getPickaxeLore($player) {
 		if ($player instanceof Player) {
 			$player = $player->getName();
@@ -130,76 +135,12 @@ class Pickaxe extends PluginBase implements Listener {
 		$lore = "§b§l⇲ Thông Tin:\n§e§lChiếc Cúp Được Rèn Từ\n§e§l§cMột Vị Thần tài Giỏi Đã Chiến Thắng §eCuộc Thời Chiến Tranh\n§e§l✦ §6Cậu Đã Triệu Hồi Ta?, Thế Cậu Đã sẵn Sàng Đối Đầu Chưa?\n\n§9§l↦ §bChủ Nhân: §a" . $player . "!";
 		return $lore;
 	}
-
-	//Set Pickaxe Level
 	public function setPickaxe(Item $item) : Item {
 		$item->getNamedTag()->setString("Pickaxe", self::KEY_VALUE);
 		return $item;
 	}
-
-	//Check Pickaxe Level
 	public function onCheck(Item $item) : bool {
 		return $item->getNamedTag()->getTag("Pickaxe") !== null;
-	}
-
-	//getExp player
-	public function getExp($player) {
-		if ($player instanceof Player) {
-			$player = $player->getName();
-			if (!$this->pic->exists($player)) {
-				$exp = 0;
-				return $exp;
-			} else {
-				$exp = $this->pic->get($player)["Exp"];
-				return $exp;
-			}
-		}
-	}
-
-	//getNextExp player
-	public function getNextExp($player) {
-		if ($player instanceof Player) {
-			$player = $player->getName();
-			if (!$this->pic->exists($player)) {
-				$nexp = 0;
-				return $nexp;
-			} else {
-				$nexp = $this->pic->get($player)["NextExp"];
-				return $nexp;
-			}
-		}
-	}
-
-	//get Level player
-	public function getLevel($player) {
-		if ($player instanceof Player) {
-			$player = $player->getName();
-			if (!$this->pic->exists($player)) {
-				$lv = 0;
-				return $lv;
-			} else {
-				$lv = $this->pic->get($player)["Level"];
-				return $lv;
-			}
-		}
-	}
-
-	//addExp for player
-	public function addExp($player, $xp) {
-		if ($player instanceof Player) {
-			$player = $player->getName();
-			$current = $this->pic->get($player)["Exp"];
-			$currentlv = $this->pic->get($player)["Level"];
-			$currentne = $this->pic->get($player)["NextExp"];
-			$currentpopup = $this->pic->get($player)["Popup"];
-			$this->pic->set(($player), [
-				"Exp" => $current + $xp,
-				"Level" => $currentlv,
-				"NextExp" => $currentne,
-				"Popup" => $currentpopup
-			]);
-			$this->pic->save();
-		}
 	}
 
 	//set level next
