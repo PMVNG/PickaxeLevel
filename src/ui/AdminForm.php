@@ -29,7 +29,12 @@ class AdminForm{
 				$player->sendMessage("§cThông tin phải là số!");
 				return;
 			}
-			// TODO: Set Data
+			$this->pickaxe->getProvider()->setData($player, [
+                "Level" => $data[0],
+                "Exp" => $data[1],
+                "NextExp" => $data[2],
+                "Popup" => false
+            ]);
 		});
 		$form->setTitle("§c§lAdmin Pickaxe");
 		$form->addInput("§1§l↣ §aLevel:", "0");
