@@ -1,0 +1,8 @@
+image: 'restyled/restyler-php-cs-fixer:v3.8.0'
+command:
+  - php-cs-fixer
+  - fix
+arguments: []
+include:
+  - '**/*.php'
+interpreters: []
