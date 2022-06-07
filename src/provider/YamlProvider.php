@@ -20,7 +20,7 @@ class YamlProvider{
     public function initConfig(): void{
 		$this->pickaxe->saveDefaultConfig();
         $this->config = $this->pickaxe->getConfig();
-		$this->users = new Config($this->pickaxe->getDataFolder() . "users.yml", Config::YAML);
+		$this->users = new SQLite3($this->pickaxe->getDataFolder() . "users.yml", Config::YAML);
     }
 
     public function isRegistered(Player $player): bool{
