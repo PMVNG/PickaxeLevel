@@ -5,18 +5,13 @@ declare(strict_types=1);
 namespace PMVNG\PickaxeLevel\listener;
 
 use PMVNG\PickaxeLevel\Pickaxe;
-use pocketmine\console\ConsoleCommandSender;
-use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\VanillaEnchantments;
 use pocketmine\item\ItemIds;
-use pocketmine\Server;
-use function in_array;
 
 class EventListener implements Listener {
 	protected Pickaxe $plugin;
