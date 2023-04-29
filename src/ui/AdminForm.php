@@ -6,17 +6,16 @@ use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 use pocketmine\player\Player;
 use Vecnavium\FormsUI\CustomForm;
 
-class AdminForm{
+class AdminForm {
 
-    protected Pickaxe $pickaxe;
+	protected Pickaxe $pickaxe;
 
-    public function __construct(Player $player)
-    {
-        $this->pickaxe = Pickaxe::getInstance();
-        $this->openForm($player);
-    }
+	public function __construct(Player $player) {
+		$this->pickaxe = Pickaxe::getInstance();
+		$this->openForm($player);
+	}
 
-    private function openForm(Player $player): void{
+	private function openForm(Player $player): void {
 		$form = new CustomForm(function (Player $player, array|null $data) {
 			if (!isset($data)) {
 				return;
@@ -30,11 +29,11 @@ class AdminForm{
 				return;
 			}
 			$this->pickaxe->getProvider()->setData($player, [
-                "Level" => $data[0],
-                "Exp" => $data[1],
-                "NextExp" => $data[2],
-                "Popup" => false
-            ]);
+				"Level" => $data[0],
+				"Exp" => $data[1],
+				"NextExp" => $data[2],
+				"Popup" => false
+			]);
 		});
 		$form->setTitle("§c§lAdmin Pickaxe");
 		$form->addInput("§1§l↣ §aLevel:", "0");
@@ -42,5 +41,5 @@ class AdminForm{
 		$form->addInput("§1§l↣ §aNextExp:", "0");
 		$player->sendForm($form);
 		return;
-    }
+	}
 }

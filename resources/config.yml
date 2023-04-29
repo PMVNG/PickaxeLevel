@@ -1,7 +1,10 @@
+---
 givePickaxe_chat: true
 msg-Give: "!givepickaxe"
+
 #Messages
 Console-CMD: Please use this command in game
+
 #MainForm
 Type: 1
 
@@ -24,3 +27,4 @@ InfoForm:
 TopForm:
   title: §6§lPMVNG PICKAXE
   label: §l§bHạng §e{top} §b thuộc về §c{username }§f Với §e{level} §cCấp
+...

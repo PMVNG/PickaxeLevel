@@ -7,14 +7,13 @@ use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
 
-class PickaxeManager{
+class PickaxeManager {
 
-    protected Pickaxe $pickaxe;
+	protected Pickaxe $pickaxe;
 
-    public function __construct()
-    {
-        $this->pickaxe = Pickaxe::getInstance();
-    }
+	public function __construct() {
+		$this->pickaxe = Pickaxe::getInstance();
+	}
 
 	public function getPickaxeName(Player $player) {
 		$username = $player->getName();
@@ -28,16 +27,16 @@ class PickaxeManager{
 		return $lore;
 	}
 
-    public function addPickaxe(Player $player): void{
-	    $item = VanillaItems::DIAMOND_PICKAXE();
+	public function addPickaxe(Player $player): void {
+		$item = VanillaItems::DIAMOND_PICKAXE();
 		$item->setCustomName($this->getPickaxeName($player));
 		$item->setLore(array($this->getPickaxeLore($player)));
-        $item->getNamedTag()->setString("PMVNGPickaxe", $player->getName());
+		$item->getNamedTag()->setString("PMVNGPickaxe", $player->getName());
 		$this->pickaxe->lockeditem->setLocked($item);
-        $player->getInventory()->addItem($item);
-    }
+		$player->getInventory()->addItem($item);
+	}
 
-	public function isPMVNGPickaxe(Item $item) : bool {
+	public function isPMVNGPickaxe(Item $item): bool {
 		return $item->getNamedTag()->getTag("PMVNGPickaxe") !== null;
 	}
 }

@@ -24,26 +24,26 @@ class Pickaxe extends PluginBase implements Listener {
 
 	protected YamlProvider $provider;
 
-	protected function onEnable() : void {
+	protected function onEnable(): void {
 		self::setInstance($this);
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 		/// $task = new Score($this);
-		 /// $this->getScheduler()->scheduleRepeatingTask($task, 20);
+		/// $this->getScheduler()->scheduleRepeatingTask($task, 20);
 		$this->initDepend();
 		$this->provider = new YamlProvider();
 		$this->provider->initConfig();
 		$this->getServer()->getCommandMap()->register('pickaxe', new PickaxeCommand($this));
 	}
 
-	public function getProvider(): YamlProvider{
+	public function getProvider(): YamlProvider {
 		return $this->provider;
 	}
 
-	public function getPickaxeMgr(): PickaxeManager{
+	public function getPickaxeMgr(): PickaxeManager {
 		return new PickaxeManager();
 	}
 
-	protected function initDepend(): void{
+	protected function initDepend(): void {
 		$this->lockeditem = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
 		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 		if ($this->lockeditem == null) {

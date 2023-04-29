@@ -39,7 +39,7 @@ class EventListener implements Listener {
 
 	public function onJoin(PlayerJoinEvent $event) {
 		$player = $event->getPlayer();
-		if(!$this->plugin->getProvider()->isRegistered($player)){
+		if (!$this->plugin->getProvider()->isRegistered($player)) {
 			$this->plugin->getProvider()->registerUser($player);
 		}
 	}
@@ -68,7 +68,7 @@ class EventListener implements Listener {
 		if ($this->plugin->getPickaxeMgr()->isPMVNGPickaxe($item)) {
 			if (isset($this->list[$id])) {
 				$this->plugin->getProvider()->addExp($player, $this->list[$id]);
-			} else{
+			} else {
 				$this->plugin->getProvider()->addExp($player, 2);
 			}
 			if ($data["Popup"]) {
@@ -78,7 +78,7 @@ class EventListener implements Listener {
 				$this->plugin->getProvider()->LevelUP($player);
 				$player->sendMessage("§e§l❖§6Level Cúp§e: " . $data["Level"] + 1 . "!");
 				$player->sendTitle("§a❖§l§9 Lên cấp§e " . $data["Level"] + 1);
-				if(($data["Level"] +1) % 2 == 0){
+				if (($data["Level"] + 1) % 2 == 0) {
 					$efficiency = VanillaEnchantments::EFFICIENCY();
 					$level = (int) $data["Level"] / 2.5;
 					$item->addEnchantment(new EnchantmentInstance($efficiency, intval($level)));

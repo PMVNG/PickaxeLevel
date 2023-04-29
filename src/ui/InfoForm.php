@@ -6,17 +6,16 @@ use DavidGlitch04\PMVNGPickaxe\Pickaxe;
 use pocketmine\player\Player;
 use Vecnavium\FormsUI\SimpleForm;
 
-class InfoForm{
+class InfoForm {
 
-    protected Pickaxe $pickaxe;
+	protected Pickaxe $pickaxe;
 
-    public function __construct(Player $player)
-    {
-        $this->pickaxe = Pickaxe::getInstance();
-        $this->openForm($player);
-    }
+	public function __construct(Player $player) {
+		$this->pickaxe = Pickaxe::getInstance();
+		$this->openForm($player);
+	}
 
-    private function openForm(Player $player): void{
+	private function openForm(Player $player): void {
 		$form = new SimpleForm(function (Player $player, int|null $data) {
 			if (!isset($data)) {
 				return;
@@ -27,6 +26,6 @@ class InfoForm{
 		$form->setContent($this->pickaxe->getConfig()->getNested("InfoForm.content"));
 		$form->addButton($this->pickaxe->getConfig()->getNested("InfoForm.button_back"), $type, $this->pickaxe->getConfig()->getNested("InfoForm.png_back"));
 		$player->sendForm($form);
-        return;
-    }
+		return;
+	}
 }

@@ -1,3 +1,4 @@
+---
 name: PMVNGPickaxe
 version: 1.0
 api: 4.0.0
@@ -6,3 +7,4 @@ src-namespace-prefix: DavidGlitch04\PMVNGPickaxe
 author: PMVNG
 authors: [DavidGlitch04]
 website: https://github.com/PMVNG
+...
