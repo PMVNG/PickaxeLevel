@@ -71,9 +71,10 @@ class EventListener implements Listener {
 			}
 			if (intval($data["Exp"]) >= intval($data["NextExp"])) {
 				$this->plugin->getProvider()->LevelUP($player);
-				$player->sendMessage("§e§l❖§6Level Cúp§e: " . $data["Level"] + 1 . "!");
-				$player->sendTitle("§a❖§l§9 Lên cấp§e " . $data["Level"] + 1);
-				if (($data["Level"] + 1) % 2 == 0) {
+				$level = $data["Level"] + 1;
+				$player->sendMessage("§e§l❖§6Level Cúp§e: {$level}!");
+				$player->sendTitle("§a❖§l§9 Lên cấp§e $level");
+				if ($level % 2 == 0) {
 					$efficiency = VanillaEnchantments::EFFICIENCY();
 					$level = (int) $data["Level"] / 2.5;
 					$item->addEnchantment(new EnchantmentInstance($efficiency, intval($level)));
