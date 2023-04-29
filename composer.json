@@ -1,11 +1,32 @@
 {
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "pocketmine/pocketmine-mp": "^4.0.0",
-        "vecnavium/formsui": "v1.1.2"
+        "pocketmine/pocketmine-mp": "4.20.1",
+        "vecnavium/formsui": "master"
     },
     "require-dev": {
         "phpstan/phpstan": "1.8.9"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "vecnavium/formsui",
+                "version": "master",
+                "autoload": {
+                    "classmap": [
+                        "src/"
+                    ]
+                },
+                "source": {
+                    "url": "https://github.com/Vecnavium/FormsUI",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
     "autoload": {
         "classmap": [
             "src"
