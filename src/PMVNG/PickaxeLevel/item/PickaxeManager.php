@@ -19,7 +19,9 @@ class PickaxeManager {
 
 	public function getPickaxeName(Player $player): string {
 		$username = $player->getName();
-		$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b " . $this->pickaxe->getProvider()->getData($player)["Level"] . " §r§l]§a§l " . $username;
+		$data = $this->pickaxe->getProvider()->getData($player);
+		$level = $data["Level"] ?? "null";
+		$name = "§l§a⚒§b PMVNG PICKAXE §6 §r§l[§cLevel: §b " . $level . " §r§l]§a§l " . $username;
 		return $name;
 	}
 

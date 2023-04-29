@@ -42,11 +42,11 @@ class YamlProvider {
 	}
 
 	/**
-	 * @return array<string, float|int|string|false>|null
-	 */
+	 * @return array{Level: float|int|numeric-string, Exp: float|int|numeric-string, NextExp: float|int|numeric-string, Popup: bool} */
 	public function getData(Player $player): array|null {
 		$username = $player->getName();
 		$data = $this->users->getAll();
+		var_dump($data[$username]);
 		return isset($data[$username]) ? $data[$username] : null;
 	}
 
@@ -77,7 +77,7 @@ class YamlProvider {
 	}
 
 	/**
-	 * @param array<string, float|int|string|false> $data
+	 * @param array{Level: float|int|numeric-string, Exp: float|int|numeric-string, NextExp: float|int|numeric-string, Popup: false} $data
 	 */
 	public function setData(Player $player, array $data): void {
 		$this->users->set($player->getName(), $data);

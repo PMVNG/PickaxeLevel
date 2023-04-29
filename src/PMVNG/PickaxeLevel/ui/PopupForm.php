@@ -22,7 +22,8 @@ class PopupForm {
 			if (!isset($data)) {
 				new MainForm($player);
 			}
-			$this->pickaxe->getProvider()->setStatusPopup($player, boolval($data[0]));
+			$status = $data[0] ?? true;
+			$this->pickaxe->getProvider()->setStatusPopup($player, boolval($status));
 		});
 		$form->setTitle("§6§lPoppup Pickaxe");
 		$form->addToggle("§1§l↣ §aKéo sang phải để bật", false);

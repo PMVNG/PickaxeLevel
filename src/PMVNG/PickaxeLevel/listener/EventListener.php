@@ -60,6 +60,9 @@ class EventListener implements Listener {
 		$item = $player->getInventory()->getItemInHand();
 		$id = $event->getBlock()->getId();
 		$data = $this->plugin->getProvider()->getData($player);
+		if ($data === null) {
+			return;
+		}
 		if ($event->isCancelled()) {
 			return;
 		}
