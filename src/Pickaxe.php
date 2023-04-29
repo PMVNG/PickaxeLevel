@@ -18,7 +18,7 @@ class Pickaxe extends PluginBase implements Listener {
 
 	use SingletonTrait;
 
-	public $li, $CE;
+	public $li, $CE, $lockeditem;
 
 	protected Config $pic;
 
