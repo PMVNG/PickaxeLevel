@@ -7,7 +7,8 @@ namespace PMVNG\PickaxeLevel\utils;
 use PMVNG\PickaxeLevel\Pickaxe;
 
 trait SingletonTrait {
-	public static $instance;
+
+	public static Pickaxe $instance;
 
 	public static function setInstance(Pickaxe $instance): void {
 		self::$instance = $instance;

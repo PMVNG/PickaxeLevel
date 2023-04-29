@@ -3,7 +3,8 @@
     "prefer-stable": true,
     "require": {
         "pocketmine/pocketmine-mp": "4.20.1",
-        "vecnavium/formsui": "master"
+        "vecnavium/formsui": "master",
+        "david-pm-pl/lockeditem": "master"
     },
     "require-dev": {
         "phpstan/phpstan": "1.8.9"
@@ -23,6 +24,23 @@
                     "url": "https://github.com/Vecnavium/FormsUI",
                     "type": "git",
                     "reference": "master"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "david-pm-pl/lockeditem",
+                "version": "master",
+                "autoload": {
+                    "classmap": [
+                        "src/"
+                    ]
+                },
+                "source": {
+                    "url": "https://github.com/David-pm-pl/LockedItem",
+                    "type": "git",
+                    "reference": "stable"
                 }
             }
         }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9414fe1c492c479d7b6589d4203f5d50",
+    "content-hash": "5cceb22ec374883ffc5ebf170911aecc",
     "packages": [
         {
             "name": "adhocore/json-comment",
@@ -119,6 +119,21 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "david-pm-pl/lockeditem",
+            "version": "master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/David-pm-pl/LockedItem",
+                "reference": "stable"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            }
         },
         {
             "name": "fgrosse/phpasn1",

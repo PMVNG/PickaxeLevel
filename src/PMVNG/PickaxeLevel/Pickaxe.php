@@ -10,14 +10,24 @@ use PMVNG\PickaxeLevel\listener\EventListener;
 use PMVNG\PickaxeLevel\provider\YamlProvider;
 use PMVNG\PickaxeLevel\utils\SingletonTrait;
 use pocketmine\event\Listener;
+use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use ytbjero\LockedItem\LockedItem;
 
 class Pickaxe extends PluginBase implements Listener {
 
 	use SingletonTrait;
 
-	public $li, $CE, $lockeditem;
+	/**
+	 * @var ?Plugin $CE
+	 */
+	public $CE;
+
+	/**
+	 * @var LockedItem $lockeditem
+	 */
+	public $lockeditem;
 
 	protected Config $pic;
 
@@ -43,11 +53,13 @@ class Pickaxe extends PluginBase implements Listener {
 	}
 
 	protected function initDepend(): void {
-		$this->lockeditem = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
-		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
-		if ($this->lockeditem == null) {
+		$lockeditem =  $this->getServer()->getPluginManager()->getPlugin("LockedItem");
+		if ($lockeditem instanceof LockedItem) {
+			$this->lockeditem = $lockeditem;
+		} else {
 			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed LockedItem, please download it at https://poggit.pmmp.io/p/LockedItem/5.0.0 and then try again.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
+		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 	}
 }

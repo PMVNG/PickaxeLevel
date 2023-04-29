@@ -16,6 +16,9 @@ use pocketmine\item\ItemIds;
 class EventListener implements Listener {
 	protected Pickaxe $plugin;
 
+	/**
+	 * @var array<int, int> $list
+	 */
 	private array $list = [
 		ItemIds::DIAMOND_ORE => 4,
 		ItemIds::IRON_ORE => 3,
@@ -32,14 +35,14 @@ class EventListener implements Listener {
 		$this->plugin = $plugin;
 	}
 
-	public function onJoin(PlayerJoinEvent $event) {
+	public function onJoin(PlayerJoinEvent $event): void {
 		$player = $event->getPlayer();
 		if (!$this->plugin->getProvider()->isRegistered($player)) {
 			$this->plugin->getProvider()->registerUser($player);
 		}
 	}
 
-	public function onChat(PlayerChatEvent $event) {
+	public function onChat(PlayerChatEvent $event): void {
 		$player = $event->getPlayer();
 		$msg = $event->getMessage();
 		$config = $this->plugin->getConfig();
@@ -52,7 +55,7 @@ class EventListener implements Listener {
 		}
 	}
 
-	public function onBreak(BlockBreakEvent $event) {
+	public function onBreak(BlockBreakEvent $event): void {
 		$player = $event->getPlayer();
 		$item = $player->getInventory()->getItemInHand();
 		$id = $event->getBlock()->getId();

@@ -41,6 +41,9 @@ class YamlProvider {
 		$this->users->save();
 	}
 
+	/**
+	 * @return array<string, float|int|string|false>|null
+	 */
 	public function getData(Player $player): array|null {
 		$username = $player->getName();
 		$data = $this->users->getAll();
@@ -73,11 +76,17 @@ class YamlProvider {
 		$this->users->save();
 	}
 
+	/**
+	 * @param array<string, float|int|string|false> $data
+	 */
 	public function setData(Player $player, array $data): void {
 		$this->users->set($player->getName(), $data);
 		$this->users->save();
 	}
 
+	/**
+	 * @return array<int|string, mixed>
+	 */
 	public function getAllUsers(): array {
 		return $this->users->getAll();
 	}
