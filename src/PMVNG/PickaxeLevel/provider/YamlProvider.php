@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PMVNG\PickaxeLevel\provider;
 
 use PMVNG\PickaxeLevel\Pickaxe;
