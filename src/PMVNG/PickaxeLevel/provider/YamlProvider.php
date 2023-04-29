@@ -53,7 +53,7 @@ class YamlProvider {
 	public function addExp(Player $player, int $exp): void {
 		$username = $player->getName();
 		$data = $this->users->get($username, []);
-		$data["Exp"] = $this->getData($player)["Exp"] + $exp;
+		$data["Exp"] = intval($this->getData($player)["Exp"]) + $exp;
 		$this->users->set($username, $data);
 		$this->users->save();
 	}
@@ -69,9 +69,9 @@ class YamlProvider {
 	public function LevelUP(Player $player): void {
 		$username = $player->getName();
 		$data = $this->users->get($username, []);
-		$data["Level"] = $this->getData($player)["Level"] + 1;
+		$data["Level"] = intval($this->getData($player)["Level"]) + 1;
 		$data["Exp"] = 0;
-		$data["NextExp"] = $this->getData($player)["NextExp"] * 120;
+		$data["NextExp"] = intval($this->getData($player)["NextExp"]) * 120;
 		$this->users->set($username, $data);
 		$this->users->save();
 	}

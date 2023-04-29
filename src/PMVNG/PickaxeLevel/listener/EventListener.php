@@ -74,7 +74,7 @@ class EventListener implements Listener {
 			}
 			if (intval($data["Exp"]) >= intval($data["NextExp"])) {
 				$this->plugin->getProvider()->LevelUP($player);
-				$level = $data["Level"] + 1;
+				$level = intval($data["Level"]) + 1;
 				$player->sendMessage("§e§l❖§6Level Cúp§e: {$level}!");
 				$player->sendTitle("§a❖§l§9 Lên cấp§e $level");
 				if ($level % 2 == 0) {
