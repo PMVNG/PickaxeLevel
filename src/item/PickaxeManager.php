@@ -1,8 +1,8 @@
 <?php
 
-namespace DavidGlitch04\PickaxeLevel\item;
+namespace PMVNG\PickaxeLevel\item;
 
-use DavidGlitch04\PickaxeLevel\Pickaxe;
+use PMVNG\PickaxeLevel\Pickaxe;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;

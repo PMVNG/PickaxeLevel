@@ -1,8 +1,8 @@
 <?php
 
-namespace DavidGlitch04\PickaxeLevel\ui;
+namespace PMVNG\PickaxeLevel\ui;
 
-use DavidGlitch04\PickaxeLevel\Pickaxe;
+use PMVNG\PickaxeLevel\Pickaxe;
 use pocketmine\player\Player;
 use Vecnavium\FormsUI\SimpleForm;
 

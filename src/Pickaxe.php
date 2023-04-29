@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 
-namespace DavidGlitch04\PickaxeLevel;
+namespace PMVNG\PickaxeLevel;
 
-use DavidGlitch04\PickaxeLevel\commands\PickaxeCommand;
-use DavidGlitch04\PickaxeLevel\item\PickaxeManager;
-use DavidGlitch04\PickaxeLevel\listener\EventListener;
-use DavidGlitch04\PickaxeLevel\provider\YamlProvider;
-use DavidGlitch04\PickaxeLevel\utils\SingletonTrait;
+use PMVNG\PickaxeLevel\commands\PickaxeCommand;
+use PMVNG\PickaxeLevel\item\PickaxeManager;
+use PMVNG\PickaxeLevel\listener\EventListener;
+use PMVNG\PickaxeLevel\provider\YamlProvider;
+use PMVNG\PickaxeLevel\utils\SingletonTrait;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;

@@ -1,11 +1,11 @@
 <?php
 
-namespace DavidGlitch04\PickaxeLevel\commands;
+namespace PMVNG\PickaxeLevel\commands;
 
-use DavidGlitch04\PickaxeLevel\Pickaxe;
-use DavidGlitch04\PickaxeLevel\ui\AdminForm;
-use DavidGlitch04\PickaxeLevel\ui\MainForm;
-use DavidGlitch04\PickaxeLevel\ui\TopForm;
+use PMVNG\PickaxeLevel\Pickaxe;
+use PMVNG\PickaxeLevel\ui\AdminForm;
+use PMVNG\PickaxeLevel\ui\MainForm;
+use PMVNG\PickaxeLevel\ui\TopForm;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;

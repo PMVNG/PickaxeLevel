@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DavidGlitch04\PickaxeLevel\utils;
+namespace PMVNG\PickaxeLevel\utils;
 
-use DavidGlitch04\PickaxeLevel\Pickaxe;
+use PMVNG\PickaxeLevel\Pickaxe;
 
 trait SingletonTrait {
 	public static $instance;

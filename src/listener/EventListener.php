@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DavidGlitch04\PickaxeLevel\listener;
+namespace PMVNG\PickaxeLevel\listener;
 
-use DavidGlitch04\PickaxeLevel\Pickaxe;
+use PMVNG\PickaxeLevel\Pickaxe;
 use pocketmine\console\ConsoleCommandSender;
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\event\block\BlockBreakEvent;
