@@ -1,8 +1,8 @@
 <?php
 
-namespace DavidGlitch04\PMVNGPickaxe\item;
+namespace DavidGlitch04\PickaxeLevel\item;
 
-use DavidGlitch04\PMVNGPickaxe\Pickaxe;
+use DavidGlitch04\PickaxeLevel\Pickaxe;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
@@ -31,12 +31,12 @@ class PickaxeManager {
 		$item = VanillaItems::DIAMOND_PICKAXE();
 		$item->setCustomName($this->getPickaxeName($player));
 		$item->setLore(array($this->getPickaxeLore($player)));
-		$item->getNamedTag()->setString("PMVNGPickaxe", $player->getName());
+		$item->getNamedTag()->setString("PickaxeLevel", $player->getName());
 		$this->pickaxe->lockeditem->setLocked($item);
 		$player->getInventory()->addItem($item);
 	}
 
-	public function isPMVNGPickaxe(Item $item): bool {
-		return $item->getNamedTag()->getTag("PMVNGPickaxe") !== null;
+	public function isPickaxeLevel(Item $item): bool {
+		return $item->getNamedTag()->getTag("PickaxeLevel") !== null;
 	}
 }

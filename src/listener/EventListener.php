@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DavidGlitch04\PMVNGPickaxe\listener;
+namespace DavidGlitch04\PickaxeLevel\listener;
 
-use DavidGlitch04\PMVNGPickaxe\Pickaxe;
+use DavidGlitch04\PickaxeLevel\Pickaxe;
 use pocketmine\console\ConsoleCommandSender;
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\event\block\BlockBreakEvent;
@@ -65,7 +65,7 @@ class EventListener implements Listener {
 		if ($event->isCancelled()) {
 			return;
 		}
-		if ($this->plugin->getPickaxeMgr()->isPMVNGPickaxe($item)) {
+		if ($this->plugin->getPickaxeMgr()->isPickaxeLevel($item)) {
 			if (isset($this->list[$id])) {
 				$this->plugin->getProvider()->addExp($player, $this->list[$id]);
 			} else {

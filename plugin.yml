@@ -1,9 +1,9 @@
 ---
-name: PMVNGPickaxe
+name: PickaxeLevel
 version: 1.0
 api: 4.0.0
-main: DavidGlitch04\PMVNGPickaxe\Pickaxe
-src-namespace-prefix: DavidGlitch04\PMVNGPickaxe
+main: DavidGlitch04\PickaxeLevel\Pickaxe
+src-namespace-prefix: DavidGlitch04\PickaxeLevel
 author: PMVNG
 authors: [DavidGlitch04]
 website: https://github.com/PMVNG
