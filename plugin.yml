@@ -3,7 +3,6 @@ name: PickaxeLevel
 version: 1.0
 api: 4.0.0
 main: PMVNG\PickaxeLevel\Pickaxe
-src-namespace-prefix: PMVNG\PickaxeLevel
 author: PMVNG
 authors: [DavidGlitch04, NhanAZ]
 website: https://github.com/PMVNG
