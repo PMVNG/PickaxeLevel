@@ -30,23 +30,28 @@ class PickaxeCommand extends Command implements PluginOwned {
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args): void {
-		if ($sender instanceof Player) {
-			if (!isset($args[0])) {
-				new MainForm($sender);
-			} else {
-				switch (strtolower($args[0])) {
-					case "toppickaxe":
-						new TopForm($sender);
-						break;
-					case "op":
-						if (Server::getInstance()->isOp($sender->getName())) {
-							new AdminForm($sender);
-						}
-						break;
-				}
+		if (!($sender instanceof Player)) {
+		    $sender->sendMessage($this->plugin->getConfig()->get("Console-CMD"));
+		    return;
+		}
+
+		if (!isset($args[0])) {
+		    new MainForm($sender);
+		    return;
+		}
+
+		switch (strtolower($args[0])) {
+		    case "toppickaxe":
+			new TopForm($sender);
+			break;
+		    case "op":
+			if (Server::getInstance()->isOp($sender->getName())) {
+			    new AdminForm($sender);
 			}
-		} else {
-			$sender->sendMessage($this->plugin->getConfig()->get("Console-CMD"));
+			break;
+		    default:
+			new MainForm($sender);
+			break;
 		}
 	}
 }
