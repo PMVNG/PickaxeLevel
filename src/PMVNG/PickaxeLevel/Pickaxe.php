@@ -15,49 +15,54 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use ytbjero\LockedItem\LockedItem;
 
-class Pickaxe extends PluginBase implements Listener {
+class Pickaxe extends PluginBase implements Listener
+{
+    use SingletonTrait;
 
-	use SingletonTrait;
+    /**
+     * @var ?Plugin $CE
+     */
+    public $CE;
 
-	/**
-	 * @var ?Plugin $CE
-	 */
-	public $CE;
+    /**
+     * @var LockedItem $lockeditem
+     */
+    public $lockeditem;
 
-	/**
-	 * @var LockedItem $lockeditem
-	 */
-	public $lockeditem;
+    protected Config $pic;
 
-	protected Config $pic;
+    protected YamlProvider $provider;
 
-	protected YamlProvider $provider;
+    protected function onEnable(): void
+    {
+        self::setInstance($this);
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
+        /// $task = new Score($this);
+        /// $this->getScheduler()->scheduleRepeatingTask($task, 20);
+        $this->initDepend();
+        $this->provider = new YamlProvider();
+        $this->provider->initConfig();
+        $this->getServer()->getCommandMap()->register('pickaxe', new PickaxeCommand($this));
+    }
 
-	protected function onEnable(): void {
-		self::setInstance($this);
-		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-		/// $task = new Score($this);
-		/// $this->getScheduler()->scheduleRepeatingTask($task, 20);
-		$this->initDepend();
-		$this->provider = new YamlProvider();
-		$this->provider->initConfig();
-		$this->getServer()->getCommandMap()->register('pickaxe', new PickaxeCommand($this));
-	}
+    public function getProvider(): YamlProvider
+    {
+        return $this->provider;
+    }
 
-	public function getProvider(): YamlProvider {
-		return $this->provider;
-	}
+    public function getPickaxeMgr(): PickaxeManager
+    {
+        return new PickaxeManager();
+    }
 
-	public function getPickaxeMgr(): PickaxeManager {
-		return new PickaxeManager();
-	}
-
-    public static function isLockedItem(): bool {
+    public static function isLockedItem(): bool
+    {
         return self::getInstance()->lockeditem instanceof LockedItem;
     }
 
-	protected function initDepend(): void {
+    protected function initDepend(): void
+    {
         $this->lockeditem = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
-		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
-	}
+        $this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
+    }
 }

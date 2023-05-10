@@ -7,11 +7,12 @@ namespace PMVNG\PickaxeLevel\provider;
 use PMVNG\PickaxeLevel\Pickaxe;
 use pocketmine\player\Player;
 
-abstract class Database{
-
+abstract class Database
+{
     protected Pickaxe $pickaxe;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->pickaxe = Pickaxe::getInstance();
     }
 
@@ -21,6 +22,10 @@ abstract class Database{
 
     abstract public function registerUser(Player $player): void;
 
+    /**
+     * @param Player $player
+     * @return array|null
+     */
     abstract public function getData(Player $player): ?array;
 
     abstract public function addExp(Player $player, int $exp): void;

@@ -6,44 +6,50 @@ namespace PMVNG\PickaxeLevel\provider;
 
 use pocketmine\player\Player;
 
-class PostgreSQL extends Database {
-
-    public function initConfig(): void {
-
-    }
-
-    public function isRegistered(Player $player): bool {
+class PostgreSQL extends Database
+{
+    public function initConfig(): void
+    {
 
     }
 
-    public function registerUser(Player $player): void {
+    public function isRegistered(Player $player): bool
+    {
 
     }
 
-    /**
-     * @return array{Level: float|int|numeric-string, Exp: float|int|numeric-string, NextExp: float|int|numeric-string, Popup: bool}
-     */
-    public function getData(Player $player): array|null {
+    public function registerUser(Player $player): void
+    {
 
     }
 
-    public function addExp(Player $player, int $exp): void {
+    public function getData(Player $player): array|null
+    {
 
     }
 
-    public function setStatusPopup(Player $player, bool $status): void {
+    public function addExp(Player $player, int $exp): void
+    {
 
     }
 
-    public function LevelUP(Player $player): void {
+    public function setStatusPopup(Player $player, bool $status): void
+    {
 
     }
 
-    public function setData(Player $player): void {
+    public function LevelUP(Player $player): void
+    {
 
     }
 
-    public function getAllUsers(): array {
+    public function setData(Player $player): void
+    {
+
+    }
+
+    public function getAllUsers(): array
+    {
 
     }
 }
