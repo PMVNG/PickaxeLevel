@@ -52,14 +52,12 @@ class Pickaxe extends PluginBase implements Listener {
 		return new PickaxeManager();
 	}
 
+    public static function isLockedItem(): bool {
+        return self::getInstance()->lockeditem instanceof LockedItem;
+    }
+
 	protected function initDepend(): void {
-		$lockeditem =  $this->getServer()->getPluginManager()->getPlugin("LockedItem");
-		if ($lockeditem instanceof LockedItem) {
-			$this->lockeditem = $lockeditem;
-		} else {
-			$this->getLogger()->notice("PMVNG Pickaxe > You have not installed LockedItem, please download it at https://poggit.pmmp.io/p/LockedItem/5.0.0 and then try again.");
-			$this->getServer()->getPluginManager()->disablePlugin($this);
-		}
+        $this->lockeditem = $this->getServer()->getPluginManager()->getPlugin("LockedItem");
 		$this->CE = $this->getServer()->getPluginManager()->getPlugin("PiggyCustomEnchants");
 	}
 }

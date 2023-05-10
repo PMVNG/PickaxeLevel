@@ -47,7 +47,7 @@ class EventListener implements Listener {
 		$msg = $event->getMessage();
 		$config = $this->plugin->getConfig();
 		if ($config->get("givePickaxe_chat", true)) {
-			if ($config->get('msg-Give', '!givepickaxe') == $msg) {
+			if ($config->get('msg_give', '!givepickaxe') == $msg) {
 				$event->cancel();
 				$this->plugin->getPickaxeMgr()->addPickaxe($player);
 				$player->sendMessage("§a§lNhận Cúp Thành Công!");

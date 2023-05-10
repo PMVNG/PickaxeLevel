@@ -8,15 +8,9 @@ use PMVNG\PickaxeLevel\Pickaxe;
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
 
-class YamlProvider {
-
-	protected Pickaxe $pickaxe;
+class YamlProvider extends Database{
 
 	protected Config $config, $users;
-
-	public function __construct() {
-		$this->pickaxe = Pickaxe::getInstance();
-	}
 
 	public function initConfig(): void {
 		$this->pickaxe->saveDefaultConfig();

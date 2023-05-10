@@ -36,7 +36,9 @@ class PickaxeManager {
 		$item->setCustomName($this->getPickaxeName($player));
 		$item->setLore(array($this->getPickaxeLore($player)));
 		$item->getNamedTag()->setString("PickaxeLevel", $player->getName());
-		$this->pickaxe->lockeditem->setLocked($item);
+        if (Pickaxe::isLockedItem()) {
+            $this->pickaxe->lockeditem->setLocked($item);
+        }
 		$player->getInventory()->addItem($item);
 	}
 
