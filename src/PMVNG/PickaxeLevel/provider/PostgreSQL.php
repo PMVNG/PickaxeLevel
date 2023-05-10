@@ -8,6 +8,17 @@ use pocketmine\player\Player;
 
 class PostgreSQL extends Database
 {
+    protected \PDO $pdo;
+
+    public function __construct(array $config)
+    {
+        $dbconnect = pg_connect("host={$config['host']} port={$config['port']} dbname={$config['database']} user={$config['user']} password={$config['password']}");
+        if (!$dbconnect) {
+            throw new \RuntimeException("Failed to connect to PostgreSQL database");
+        }
+        parent::__construct();
+    }
+
     public function initConfig(): void
     {
 

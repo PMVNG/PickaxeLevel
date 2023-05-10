@@ -34,7 +34,7 @@ abstract class Database
 
     abstract public function LevelUP(Player $player): void;
 
-    abstract public function setData(Player $player): void;
+    abstract public function setData(Player $player, array $data): void;
 
     abstract public function getAllUsers(): array;
 }

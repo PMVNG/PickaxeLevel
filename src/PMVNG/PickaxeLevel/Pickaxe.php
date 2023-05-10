@@ -7,6 +7,9 @@ namespace PMVNG\PickaxeLevel;
 use PMVNG\PickaxeLevel\commands\PickaxeCommand;
 use PMVNG\PickaxeLevel\item\PickaxeManager;
 use PMVNG\PickaxeLevel\listener\EventListener;
+use PMVNG\PickaxeLevel\provider\Database;
+use PMVNG\PickaxeLevel\provider\PostgreSQL;
+use PMVNG\PickaxeLevel\provider\SqliteProvider;
 use PMVNG\PickaxeLevel\provider\YamlProvider;
 use PMVNG\PickaxeLevel\utils\SingletonTrait;
 use pocketmine\event\Listener;
@@ -27,11 +30,11 @@ class Pickaxe extends PluginBase implements Listener
     /**
      * @var LockedItem $lockeditem
      */
-    public $lockeditem;
+    public ?LockedItem $lockeditem;
 
     protected Config $pic;
 
-    protected YamlProvider $provider;
+    protected Database $provider;
 
     protected function onEnable(): void
     {
@@ -40,12 +43,28 @@ class Pickaxe extends PluginBase implements Listener
         /// $task = new Score($this);
         /// $this->getScheduler()->scheduleRepeatingTask($task, 20);
         $this->initDepend();
-        $this->provider = new YamlProvider();
-        $this->provider->initConfig();
+        $this->selectConfig();
         $this->getServer()->getCommandMap()->register('pickaxe', new PickaxeCommand($this));
     }
 
-    public function getProvider(): YamlProvider
+    protected function selectConfig(): void
+    {
+        $config = $this->getConfig()->get('config');
+        switch (strtolower($config)) {
+            case 'postgre':
+                $this->provider = new PostgreSQL($this->getConfig()->get('postgresql'));
+                break;
+            case 'sqlite':
+                $this->provider = new SqliteProvider();
+                break;
+            default:
+                $this->provider = new YamlProvider();
+                break;
+        }
+        $this->provider->initConfig();
+    }
+
+    public function getProvider(): Database
     {
         return $this->provider;
     }
