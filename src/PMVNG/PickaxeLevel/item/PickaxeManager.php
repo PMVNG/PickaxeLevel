@@ -34,7 +34,7 @@ class PickaxeManager {
 	public function addPickaxe(Player $player): void {
 		$item = VanillaItems::DIAMOND_PICKAXE();
 		$item->setCustomName($this->getPickaxeName($player));
-		$item->setLore(array($this->getPickaxeLore($player)));
+        $item->setLore(array($this->getPickaxeLore($player)));
 		$item->getNamedTag()->setString("PickaxeLevel", $player->getName());
         if (Pickaxe::isLockedItem()) {
             $this->pickaxe->lockeditem->setLocked($item);

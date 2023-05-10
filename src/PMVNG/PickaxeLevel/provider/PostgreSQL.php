@@ -2,6 +2,48 @@
 
 declare(strict_types=1);
 
-class PostgreSQL{
+namespace PMVNG\PickaxeLevel\provider;
 
+use pocketmine\player\Player;
+
+class PostgreSQL extends Database {
+
+    public function initConfig(): void {
+
+    }
+
+    public function isRegistered(Player $player): bool {
+
+    }
+
+    public function registerUser(Player $player): void {
+
+    }
+
+    /**
+     * @return array{Level: float|int|numeric-string, Exp: float|int|numeric-string, NextExp: float|int|numeric-string, Popup: bool}
+     */
+    public function getData(Player $player): array|null {
+
+    }
+
+    public function addExp(Player $player, int $exp): void {
+
+    }
+
+    public function setStatusPopup(Player $player, bool $status): void {
+
+    }
+
+    public function LevelUP(Player $player): void {
+
+    }
+
+    public function setData(Player $player): void {
+
+    }
+
+    public function getAllUsers(): array {
+
+    }
 }
