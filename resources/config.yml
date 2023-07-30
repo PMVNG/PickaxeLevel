@@ -1,6 +1,15 @@
 ---
 givePickaxe_chat: true
-msg-Give: "!givepickaxe"
+msg-give: "!givepickaxe"
+
+# Datbase config
+config: sqlite
+postgresql:
+  host: 127.0.0.1
+  port: 5432
+  user: root
+  database: pickaxe
+  password: root123@@
 
 #Messages
 Console-CMD: Please use this command in game
